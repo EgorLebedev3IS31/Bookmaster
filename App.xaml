@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:Bookmaster"
              StartupUri="\view\windows\mainwindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\styles\buttonstyle.xaml"/>
+                <ResourceDictionary Source="\styles\comboboxstyle.xaml"/>
+                <ResourceDictionary Source="\styles\gridsplitterstyle.xaml"/>
+                <ResourceDictionary Source="\styles\menustyle.xaml"/>
+                <ResourceDictionary Source="\styles\passwordboxstyle.xaml"/>
+                <ResourceDictionary Source="\styles\tabcontrolstyle.xaml"/>
+                <ResourceDictionary Source="\styles\textblockstyle.xaml"/>
+                <ResourceDictionary Source="\styles\textboxstyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
