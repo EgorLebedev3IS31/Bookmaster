@@ -14,40 +14,139 @@
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
-        <!--#region Панель поиска-->
-        <Grid Margin="10">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="1*"/>
-          </Grid.RowDefinitions>
+        <!--#region  панель поиска-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>  
-            
-            <Image Grid.ColumnSpan="3"
-                   Source="/Resources/Images/logo.png"/>
-            <TextBlock Grid.Row="2" Text="Название"/>
-            <TextBlock Grid.Row="4" Text="Автор"/>
-            <TextBlock Grid.Row="6" Text="Жанр"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.ColumnSpan="3"  Source="/Resources/Images/logo.png" />
+            <TextBlock Text="Название" Grid.Row="2">
+            </TextBlock>
+            <TextBox Name="SearchByBookTitleTb"  Grid.Row="2" Grid.Column="3" >
 
-            <TextBox Grid.Column="3" Grid.Row="2"/>
-            <TextBox Grid.Column="3" Grid.Row="4"/>
-            <TextBox Grid.Column="3" Grid.Row="6"/>
+            </TextBox>
+            <TextBlock Text="Автор" Grid.Row="4">
+            </TextBlock>
+            <TextBox Name="SearchByAuthorNameTb" Grid.Row="4" Grid.Column="3">
 
-            <Button Grid.Column="3" Grid.Row="8" Content="Найти"/>
+            </TextBox>
+            <TextBlock Name="SearchByBookSubjectTb" Text="Жанр" Grid.Row="6">
+            </TextBlock>
+            <TextBox Grid.Row="6" Grid.Column="3">
+
+            </TextBox>
+            <Button Grid.Row="8" Grid.Column="3" Content="Найти" Click="SearchBtn" Cursor="Hand">
+
+            </Button>
 
         </Grid>
         <!--#endregion-->
+        <!--#region результаты поиска-->
+        <Grid Name="SearchResultGrid" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+
+                <ListView Name="BookAuthorLv">
+
+
+                    <!-- #endregion -->
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Название книги" DisplayMemberBinding="{Binding Title}"/>
+                            <GridViewColumn Header="Имя Авторов" DisplayMemberBinding="{Binding Authors}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="105" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="180" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Страница"/>
+                    <Button Name="PreviousBookBtn"
+                 Grid.Column="2" Content="&lt;"  Click="PreviousBookBtn_Click"/>
+
+                    <TextBox Name="CurrentPageTb" Grid.Column="4"
+                         HorizontalContentAlignment="Center" TextChanged="CurrentPageTb_TextChanged"/>
+                    <Button Name="NextBookBtn"
+                 Grid.Column="6" Content="&gt;" Click="NextBookBtn_Click"/>
+                    <TextBlock Name="TotalPagesTbl" Grid.Column="8" Text="{Binding TotalPages, StringFormat=из {0}}"/>
+                    <TextBlock Name="TotalBooksTbl" Grid.Column="12" Text="{Binding BooksCount, StringFormat=Книг найдено: {0}}"/>
+                </Grid>
+
+            </Grid>
+            <!-- #endregion -->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="30" FontWeight="SemiBold" Text="Название"/>
+                <TextBlock Grid.Row="2" Text="Дополнительное название"/>
+                <TextBlock Grid.Row="4">
+                    
+                </TextBlock>
+
+
+
+
+                <TextBlock Text="{Binding Ttile}" FontSize="30" FontWeight="SemiBold"/>
+                
+                <TextBlock Grid.Row="2" Text="{Binding Subtitle}"
+
+
+
+
+            </Grid>
+        </Grid>
     </Grid>
+    
+    <!--#region Подробная информмация о книге-->
+    <!--#endregion-->
+    
 </Page>
