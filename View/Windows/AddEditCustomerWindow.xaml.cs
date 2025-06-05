@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bookmaster.View.Pages
+namespace Bookmaster.View.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Calculation_Page.xaml
+    /// Логика взаимодействия для AddEditCustomerWindow.xaml
     /// </summary>
-    public partial class CalculationPage : Page
+    public partial class AddEditCustomerWindow : Window
     {
-        public CalculationPage()
+        public AddEditCustomerWindow()
         {
             InitializeComponent();
         }

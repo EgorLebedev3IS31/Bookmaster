@@ -23,13 +23,13 @@
                 <MenuItem Name="CloseMi" Header="Закрыть приложение"
                 Click="CloseMi_Click"/>
             </MenuItem>
-            <MenuItem Name="LibraryMi" Header="Библиотека">
+            <MenuItem Header="Библиотека" Name="LibraryMi">
                 <MenuItem Name="BrowseCatalogMi" Header="Просмотр каталога"
                           Click="BrowseCatalogMi_Click"/>
                 <MenuItem Name="ManageCustomersMi" Header="Управление читателями"
                           Click="ManageCustomersMi_Click"/>
                 <MenuItem Name="CirculationMi" Header="Управление абонементом"
-                          Click="CirculationMi_Click"/>
+                          Click="CirculationMi_Click_1"/>
                 <MenuItem Name="ReportsMi" Header="Отчеты"
                           Click="ReportsMi_Click"/>
             </MenuItem>

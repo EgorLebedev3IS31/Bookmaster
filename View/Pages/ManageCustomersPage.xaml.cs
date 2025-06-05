@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bookmaster.AppData;
+using Bookmaster.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,26 @@ namespace Bookmaster.View.Pages
     /// </summary>
     public partial class Manage_Customers_Page : Page
     {
+        List<Customer> _customer = App.context.Customer.ToList();
+        PaginationService<Customer> _customerPagination;
         public Manage_Customers_Page()
         {
             InitializeComponent();
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

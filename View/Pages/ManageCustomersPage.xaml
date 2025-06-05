@@ -5,10 +5,59 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Bookmaster.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Manage_Customers_Page">
-
+      d:DesignHeight="760" d:DesignWidth="1580"
+      Title="ManageCustomersPage">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Text="Customers ID"/>
+            <TextBlock Name="CustomerIdTb" Grid.Row="3"/>
+            <TextBlock Grid.Row="5" Text="Name"/>
+            <TextBlock Name="NameTb" Grid.Row="7"/>
+            <Button Name="SearchBtn" Grid.Row="9" Content="Search" Click="SearchBtn_Click"/>
+
+            <Grid Grid.Row="11">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="EditBtn" Content="Edit" Click="EditBtn_Click"/>
+                <Button Name="AddBtn" Content="Add" Grid.Column="2" Click="AddBtn_Click"/>
+            </Grid>
+        </Grid>
+
+        <ListView Name="CustomersLv" Grid.Column="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}"/>
+                    <GridViewColumn Header="Zip" DisplayMemberBinding="{Binding Zip}"/>
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding City.Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

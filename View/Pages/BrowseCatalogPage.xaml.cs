@@ -1,5 +1,6 @@
 ﻿using Bookmaster.AppData;
 using Bookmaster.Model;
+using Bookmaster.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,11 @@ namespace Bookmaster.View.Pages
     /// </summary>
     public partial class BrowseCatalogPage : Page
     {
-        List<Book> _book = App.context.Book.ToList();
-        PaginationService _booksPagination;
+        List<Book> _books = App.context.Book.ToList();
+        List<BookCover> _bookCovers = App.context.BookCover.ToList();
 
-        public object BookDetailsGrid { get; private set; }
+        PaginationService<Book> _booksPagination;
+        PaginationService<BookCover> _bookcoverPagination;
 
         public BrowseCatalogPage()
         {
@@ -50,22 +52,22 @@ namespace Bookmaster.View.Pages
 
             if (string.IsNullOrEmpty(SearchByBookTitleTb.Text) && string.IsNullOrEmpty(SearchByAuthorNameTb.Text) && string.IsNullOrEmpty(SearchByBookSubjectTb.Text))
             {
-                _booksPagination = new PaginationService(_book);
+                _booksPagination = new PaginationService<Book>(_books, 50);
             }
             else
             {
-                List<Book> searchResults = _book.Where(book => book.Title.ToLower().Contains(SearchByBookTitleTb.Text.ToLower()) && book.Authors.ToLower().Contains(SearchByAuthorNameTb.Text.ToLower())).ToList();
+                List<Book> searchResults = _books.Where(book => book.Title.ToLower().Contains(SearchByBookTitleTb.Text.ToLower()) && book.Authors.ToLower().Contains(SearchByAuthorNameTb.Text.ToLower())).ToList();
 
-                _booksPagination = new PaginationService(searchResults);
+                _booksPagination = new PaginationService<Book>(searchResults, 50);
             }
 
-            BookAuthorLv.ItemsSource = _booksPagination.CurrentPageOfBooks;
+            BookAuthorLv.ItemsSource = _booksPagination.CurrentPageOfItems;
             TotalPagesTbl.DataContext = TotalBooksTbl.DataContext = _booksPagination; _booksPagination.UpdatePaginationButtons(PreviousBookBtn, NextBookBtn);
 
 
-            BookAuthorLv.ItemsSource = _book;
+            BookAuthorLv.ItemsSource = _books;
 
-            BookAuthorLv.ItemsSource = _book.Where(book => book.Title.ToLower().Contains(SearchByBookTitleTb.Text.ToLower()) && book.Authors.ToLower().Contains(SearchByAuthorNameTb.Text.ToLower()));
+            BookAuthorLv.ItemsSource = _books.Where(book => book.Title.ToLower().Contains(SearchByBookTitleTb.Text.ToLower()) && book.Authors.ToLower().Contains(SearchByAuthorNameTb.Text.ToLower()));
 
 
 
@@ -100,7 +102,31 @@ namespace Bookmaster.View.Pages
         {
             Book selectedBook = BookAuthorLv.SelectedItem as Book;
 
-            BookDetailsGrid.DataContext = selectedBook;
+            if (selectedBook != null)
+            {
+                BookDetailsGrid.DataContext = selectedBook;
+                _bookcoverPagination = new PaginationService<BookCover>(_bookCovers.Where(bc => bc.BookId == selectedBook.Id).ToList(), 1);
+                CoversLb.ItemsSource = _bookcoverPagination.CurrentPageOfItems;
+                _bookcoverPagination.UpdatePaginationButtons(PreviousBookBtn, NextBookBtn);
+            }           
+        }
+
+        private void AuthorDetailsHl_Click(object sender, RoutedEventArgs e)
+        {
+            Book selectedBook = BookAuthorLv.SelectedItem as Book;
+
+            BookAuthorDetailsWindow bookAuthorDetailsWindow = new BookAuthorDetailsWindow(selectedBook);
+            bookAuthorDetailsWindow.ShowDialog();
+        }
+
+        private void NextBookBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PreviousBookBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

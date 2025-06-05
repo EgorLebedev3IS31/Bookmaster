@@ -59,17 +59,27 @@ namespace Bookmaster
 
         private void ManageCustomersMi_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Manage_Customers_Page());
+            MainFrm.Navigate(new Manage_Customers_Page());
         }
 
-        private void CirculationMi_Click(object sender, RoutedEventArgs e)
+        private void CalculationMi_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new CirculationPage());
+            MainFrm.Navigate(new CalculationPage());
         }
 
         private void ReportsMi_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ReportsPage());
+            MainFrm.Navigate(new ReportsPage());
+        }
+
+        private void CirculationMi_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CirculationMi_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

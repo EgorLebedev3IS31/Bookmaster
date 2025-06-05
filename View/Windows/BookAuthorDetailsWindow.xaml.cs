@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookmaster.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +16,20 @@ using System.Windows.Shapes;
 namespace Bookmaster.View.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для LoginWindow.xaml
+    /// Логика взаимодействия для BookAuthorDetailsWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class BookAuthorDetailsWindow : Window
     {
-        public LoginWindow()
+        public BookAuthorDetailsWindow(Book selectedBook)
         {
             InitializeComponent();
+
+            AuthorsCmb.ItemsSource = selectedBook.BookAuthor;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }
